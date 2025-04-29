@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enter Institution Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="background"></div>
+
+  <div class="content">
+    <h1>Enter Institution Details</h1>
+    <form id="inputForm" action="{{ url_for('generate_timetable') }}" method="POST">
+      
+      <div id="inputs-container">
+        <div class="input-group">
+          <h3>Class 1</h3>
+          <input type="text" name="teacherNames" placeholder="Teacher Name" required><br>
+          <input type="text" name="subjects" placeholder="Subject" required><br>
+          <input type="text" name="classrooms" placeholder="Classroom" required><br>
+          <input type="text" name="times" placeholder="Time (e.g., 9:00 AM)" required><br>
+          <input type="text" name="capacities" placeholder="Capacity" required><br>
+        </div>
+        <!-- More classes will be added dynamically -->
+      </div>
+      
+      <button type="button" id="add-class-btn">Add Another Class</button><br><br>
+      <button type="submit">Generate Timetable</button>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript to dynamically add more class input forms
+    let classCounter = 1;
+    const addClassButton = document.getElementById('add-class-btn');
+    const inputsContainer = document.getElementById('inputs-container');
+    
+    addClassButton.addEventListener('click', () => {
+      classCounter++;
+      const newClassGroup = document.createElement('div');
+      newClassGroup.classList.add('input-group');
+      newClassGroup.innerHTML = `
+        <h3>Class ${classCounter}</h3>
+        <input type="text" name="teacherNames" placeholder="Teacher Name" required><br>
+        <input type="text" name="subjects" placeholder="Subject" required><br>
+        <input type="text" name="classrooms" placeholder="Classroom" required><br>
+        <input type="text" name="times" placeholder="Time (e.g., 9:00 AM)" required><br>
+        <input type="text" name="capacities" placeholder="Capacity" required><br>
+      `;
+      inputsContainer.appendChild(newClassGroup);
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

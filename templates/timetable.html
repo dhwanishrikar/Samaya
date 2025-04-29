@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Timetable - Smart Timetable</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div id="background"></div>
 
   <div class="content">
-    <h1>Your Timetable</h1>
+    <h1>Your Full-Day Timetable</h1>
+
     <table border="1">
       <thead>
         <tr>
@@ -18,23 +19,27 @@
           <th>Teacher</th>
           <th>Classroom</th>
           <th>Time</th>
+          <th>Capacity</th>
         </tr>
       </thead>
       <tbody>
+        {% for entry in timetable %}
         <tr>
-          <td>Maths</td>
-          <td>Mr. Sharma</td>
-          <td>Room 101</td>
-          <td>9:00 AM</td>
+          <td>{{ entry.subject }}</td>
+          <td>{{ entry.teacher }}</td>
+          <td>{{ entry.classroom }}</td>
+          <td>{{ entry.time }}</td>
+          <td>{{ entry.capacity }}</td>
         </tr>
-        <!-- More dummy rows -->
+        {% endfor %}
       </tbody>
     </table>
-    <button onclick="location.href='index.html'">Generate Again</button>
+
+    <button onclick="location.href='{{ url_for('index') }}'">Generate Again</button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-  <script src="script.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
