@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Processing - Smart Timetable</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="background"></div>
+
+  <div class="content">
+    <h1>Generating your timetable...</h1>
+    <div class="loader"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    setTimeout(() => {
+      location.href = 'timetable.html';
+    }, 3000); // 3 seconds wait then move to timetable
+  </script>
+</body>
+</html>
